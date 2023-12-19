@@ -21,7 +21,6 @@
    </div>
    <!--end breadcrumb-->
 
-
    <!--start product details-->
    <section class="section-padding">
     <div class="container">
@@ -35,7 +34,8 @@
           <div class="col-12 col-xl-6">
              <img src="https://images.pexels.com/photos/7679877/pexels-photo-7679877.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="img-fluid" alt="">     
           </div>
-       </div><!--end row-->
+       </div>
+       <!--end row-->
 
        <div class="separator section-padding">
         <div class="line"></div>
