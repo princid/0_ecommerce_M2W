@@ -1,7 +1,7 @@
 <?php
 session_start();
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
 ?>
 
 <!doctype html>
@@ -12,7 +12,7 @@ ini_set('display_errors', 1);
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!--favicon-->
-  <link rel="icon" href="../../assets/images/favicon-32x32.webp" type="image/webp" />
+  <link rel="icon" href="../assets/images/favicon-32x32.webp" type="image/webp" />
 
   <!-- CSS files -->
   <link href="../../assets/css/bootstrap.min.css" rel="stylesheet">

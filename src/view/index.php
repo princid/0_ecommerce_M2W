@@ -4,7 +4,7 @@
 include '../../includes/header.php';
 
 // NAVBAR 
-include_once '/var/www/html/shoppingo_project/includes/nav.php';
+include_once '../../includes/nav.php';
 
 //  CONTROLLER FILE
 include '../controller/index_page_handler.php';

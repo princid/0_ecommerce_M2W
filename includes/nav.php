@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--favicon-->
-    <link rel="icon" href="../../assets/images/favicon-32x32.webp" type="image/webp" />
+    <link rel="icon" href="../assets/images/favicon-32x32.webp" type="image/webp" />
 
     <!--favicon-->
     <link rel="icon" href="../assets/images/favicon-32x32.webp" type="image/webp" />

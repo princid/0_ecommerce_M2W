@@ -2,7 +2,7 @@
  <?php // include '/var/www/html/shopingo_admin/includes/header.php';
 
  // Header 
-include ('/var/www/html/shoppingo_project/shopingo_admin2-rahul/headers/header.php');
+include ('/var/www/html/0_ecommerce/shopingo_admin2-rahul/headers/header.php');
 
 //  include '/var/www/html/shoppingo_project/shopingo_admin2-rahul/includes/header.php';
  ?>
