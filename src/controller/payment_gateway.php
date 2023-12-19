@@ -43,19 +43,18 @@ print_r($_POST);
 $grand_total = isset($_POST['grand_total']) ? $_POST['grand_total'] : null;
 $token = $_POST['stripeToken'];
 $address = $_POST['address_id'];
+$mail_id = $_POST['email_id'];
 
 var_dump($grand_total, $token, $address);
 
 try {
-    echo "huhuhuh";
-
     $data = \Stripe\Charge::create(array(
         'amount' => $grand_total * 100,
         'currency' => "inr",
         'description' => "Please Enter Details",
         'source' => $token,
     ));
-
+    
     $transaction_id = $data['id'];
     // var_dump("txn id", $transaction_id);
     // Output the charge details
