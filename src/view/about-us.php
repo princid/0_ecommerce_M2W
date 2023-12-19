@@ -21,7 +21,6 @@
    </div>
    <!--end breadcrumb-->
 
-
    <!--start product details-->
    <section class="section-padding">
     <div class="container">
