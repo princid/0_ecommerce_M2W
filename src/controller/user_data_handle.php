@@ -1,6 +1,6 @@
 <?php
-include '../model/user_data_manage.php';
 session_start();
+include '../model/user_data_manage.php';
 $user_id = $_SESSION['user_id'];
 
 
