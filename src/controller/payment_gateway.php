@@ -30,84 +30,36 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 // API KEYS
-$publish_key = "pk_test_51OMoU7SDZQL6WmwFS5hycFlwCdbF3wO73iKHaFxLBadta4SIDyubgcIRy44FzliaBLVkzXpYWGSFQJxQH2PALKso00SUASag1M";
-$secret_key = "sk_test_51OMoU7SDZQL6WmwFN1A3Hx791lNkwxjz5l5UqHk4ILpb2H6sK6wjSOa7hjkO6yySgmndwOTNatpEw0xHg51fiMqT00iPDWzvLn";
+$publish_key = "pk_test_51OP1AZAFai3JwiWEqjLUhJSWCdT1lkwy86Ixqj7PUndeQw6Q9QJgXOmDvMFDpDzYzUz0J609Y5Sj7XfTUL09qvzZ00laZF95s1";
+$secret_key = "sk_test_51OP1AZAFai3JwiWEPG6EJquL2WGT4Z1FkvqP5QISCOhN56r5V7Dxt7TDZ6tS20cORQpCCrUsSQaNpIVSGFghqNQ700YrRsUrgQ";
 // API KEYS ENDS
 
 // LOGIC FOR PAYMENT GATEWAY
 \Stripe\Stripe::setApiKey($secret_key);
+echo '<pre>';
+\Stripe\Stripe::setVerifySslCerts(false);
+print_r($_POST);
+
 $grand_total = isset($_POST['grand_total']) ? $_POST['grand_total'] : null;
 $token = $_POST['stripeToken'];
 $address = $_POST['address_id'];
+$mail_id = $_POST['email_id'];
+
+var_dump($grand_total, $token, $address);
+
 try {
-    // \stripe\stripe::setVerifySslCerts(false);
-    // // Create PaymentIntent
-    // $intent = \Stripe\PaymentIntent::create([
-    //     'amount' => $grand_total * 100,
-    //     'currency' => 'inr',
-    //     'description' => 'Please Enter Details',
-    //     'payment_method_data' => [
-    //         'type' => 'card',
-    //         'card' => ['token' => $token],
-    //     ],
-    //     'automatic_payment_methods' => [
-    //         'enabled' => true,
-    //         'allow_redirects' => 'never',
-    //     ],
-    //     'setup_future_usage' => 'off_session',
-    // ]);
-    // if ($intent->status === 'requires_action') {
-    //     echo json_encode(['requires_action' => true, 'payment_intent_client_secret' => $intent->client_secret]);
-    //     exit;
-    // }
-    // $intent->confirm();
-    // $transaction_id = $intent->id;
-    // $client_secret = $intent->client_secret;
-    // print_r($intent);
-    // echo json_encode(['success' => true, 'transaction_id' => $transaction_id, 'client_secret' => $client_secret]);
-
-
-    \stripe\stripe::setVerifySslCerts(false);
-    // Create PaymentIntent
-    $intent = \Stripe\Charge::create(array(
+    $data = \Stripe\Charge::create(array(
         'amount' => $grand_total * 100,
-        'currency' => 'inr',
-        'description' => 'Please Enter Details',
-        'source' => $token
-        // 'payment_method_data' => [
-        //     'type' => 'card',
-        //     'card' => ['token' => $token],
-        // ],
+        'currency' => "inr",
+        'description' => "Please Enter Details",
+        'source' => $token,
     ));
-    print_r($intent);
-    ?>
-    <!-- Include Stripe.js library -->
-    <!-- <script src="https://js.stripe.com/v3/"></script>
-    <script>
-        var stripe = Stripe('your_publishable_key');
-        var elements = stripe.elements();
-        var card = elements.create('card');
-        card.mount('#card-element');
-        function handlePaymentConfirmation(clientSecret) {
-            stripe.confirmCardPayment(clientSecret, {
-                payment_method: {
-                    card: card,
-                },
-            }).then(function (result) {
-                if (result.error) {
-                    console.error(result.error);
-                } else {
-                    window.location.href = 'http://localhost/shoppingo_project/src/view/thank-you.php';
-                }
-            });
-        }
-        var obtainedClientSecret = $client_secret;
-        handlePaymentConfirmation(obtainedClientSecret);
-    </script> -->
-    <?php
-    exit;
-
-
+    
+    $transaction_id = $data['id'];
+    // var_dump("txn id", $transaction_id);
+    // Output the charge details
+    // echo '<pre>';
+    // print_r($data);
 
     // LOGIC FOR SAVING DATA IN ORDERS TABLE 
     $user_id = $_POST['user_id'];
@@ -189,25 +141,25 @@ try {
         }
     }
 } catch (\Stripe\Exception\CardException $e) {
-    // Handle card errors
-    echo 'Card Error: ' . $e->getError()->message;
+    // Handle specific CardException
+    echo 'CardException Message: ' . $e->getMessage();
 } catch (\Stripe\Exception\RateLimitException $e) {
-    // Handle rate limit errors
-    echo 'Rate Limit Error: ' . $e->getError()->message;
+    // Handle specific RateLimitException
+    echo 'RateLimitException Message: ' . $e->getMessage();
 } catch (\Stripe\Exception\InvalidRequestException $e) {
-    // Handle invalid request errors
-    echo 'Invalid Request Error: ' . $e->getError()->message;
+    // Handle specific InvalidRequestException
+    echo 'InvalidRequestException Message: ' . $e->getMessage();
 } catch (\Stripe\Exception\AuthenticationException $e) {
-    // Handle authentication errors
-    echo 'Authentication Error: ' . $e->getError()->message;
+    // Handle specific AuthenticationException
+    echo 'AuthenticationException Message: ' . $e->getMessage();
 } catch (\Stripe\Exception\ApiConnectionException $e) {
-    // Handle API connection errors
-    echo 'API Connection Error: ' . $e->getError()->message;
+    // Handle specific ApiConnectionException
+    echo 'ApiConnectionException Message: ' . $e->getMessage();
 } catch (\Stripe\Exception\ApiErrorException $e) {
-    // Handle other API errors
-    echo 'Stripe API Error: ' . $e->getError()->message;
+    // Handle generic ApiErrorException
+    echo 'ApiErrorException Message: ' . $e->getMessage();
 } catch (Exception $e) {
-    // Handle other errors
-    echo 'Error: ' . $e->getMessage();
+    // Handle generic Exception
+    echo 'Generic Exception Message: ' . $e->getMessage();
 }
 ?>

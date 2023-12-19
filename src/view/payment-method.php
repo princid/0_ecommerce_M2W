@@ -12,9 +12,10 @@ include '../controller/orders_handle.php';
 $user_id = $_SESSION['user_id'];
 
 include '../../stripe-php-master/init.php';
-$publish_key = "pk_test_51OMoU7SDZQL6WmwFS5hycFlwCdbF3wO73iKHaFxLBadta4SIDyubgcIRy44FzliaBLVkzXpYWGSFQJxQH2PALKso00SUASag1M";
-$secret_key = "sk_test_51OMoU7SDZQL6WmwFN1A3Hx791lNkwxjz5l5UqHk4ILpb2H6sK6wjSOa7hjkO6yySgmndwOTNatpEw0xHg51fiMqT00iPDWzvLn";
-\stripe\stripe::setApiKey($secret_key);
+
+$publish_key = "pk_test_51OP1AZAFai3JwiWEqjLUhJSWCdT1lkwy86Ixqj7PUndeQw6Q9QJgXOmDvMFDpDzYzUz0J609Y5Sj7XfTUL09qvzZ00laZF95s1";
+$secret_key = "sk_test_51OP1AZAFai3JwiWEPG6EJquL2WGT4Z1FkvqP5QISCOhN56r5V7Dxt7TDZ6tS20cORQpCCrUsSQaNpIVSGFghqNQ700YrRsUrgQ";
+\Stripe\Stripe::setApiKey($secret_key);
 \stripe\stripe::setVerifySslCerts(false);
 
 
@@ -92,10 +93,6 @@ function generateRandomCode($length)
 // PAYMENT METHOD
 $payment_method = "cod";
 ?>
-
-
-
-
 
 
 <!--start page content-->
